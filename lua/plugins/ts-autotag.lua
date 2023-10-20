@@ -8,6 +8,7 @@ return {
     autotag = {
       -- Setup autotag using treesitter config.
       enable = true,
+      enable_close_on_slash = false,
     },
   },
 }
