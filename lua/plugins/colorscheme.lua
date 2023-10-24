@@ -18,6 +18,15 @@ return {
         underline = true, -- true/false; for global underline
         undercurl = true, -- true/false; for global undercurl
       },
+      -- Add specific hightlight groups
+      on_highlights = function(highlights, colors)
+        highlights.TelescopeMatching = { fg = colors.red, bold = true }
+        highlights.CursorLineNr = { fg = colors.red } -- Like LineNr when 'cursorline' or 'relativenumber' is set for the cursor line.
+        highlights.Visual = {
+          bg = '#efefef',
+          fg = colors.none,
+        }
+      end,
     },
   },
 
