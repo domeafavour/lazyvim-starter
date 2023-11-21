@@ -1,7 +1,6 @@
 {
   "LazyVim": { "branch": "main", "commit": "8c20e0b5889ed254613dbac26b203130764d9c5f" },
   "LuaSnip": { "branch": "master", "commit": "cdbf6f41381e5ee4810b4b09284b603d8f18365d" },
-  "NeoSolarized.nvim": { "branch": "master", "commit": "d8b3f993448c1324ac295a4698e7d49b145dd83d" },
   "SchemaStore.nvim": { "branch": "main", "commit": "66e04604da275ceebf4ee4d4a06d3af556ec6bf1" },
   "alpha-nvim": { "branch": "main", "commit": "234822140b265ec4ba3203e3e0be0e0bb826dff5" },
   "bufferline.nvim": { "branch": "main", "commit": "357cc8f8eeb64702e6fcf2995e3b9becee99a5d3" },
@@ -49,6 +48,7 @@
   "persistence.nvim": { "branch": "main", "commit": "4b8051c01f696d8849a5cb8afa9767be8db16e40" },
   "plenary.nvim": { "branch": "master", "commit": "9ce85b0f7dcfe5358c0be937ad23e456907d410b" },
   "project.nvim": { "branch": "main", "commit": "8c6bad7d22eef1b71144b401c9f74ed01526a4fb" },
+  "solarized-osaka.nvim": { "branch": "main", "commit": "aeaefec4465deb3ec36f094578e880726c8f8e24" },
   "symbols-outline.nvim": { "branch": "master", "commit": "512791925d57a61c545bc303356e8a8f7869763c" },
   "telescope.nvim": { "branch": "master", "commit": "5a747a9587e4bfc4ae086a38cc679fe54f983b69" },
   "todo-comments.nvim": { "branch": "main", "commit": "3094ead8edfa9040de2421deddec55d3762f64d1" },
