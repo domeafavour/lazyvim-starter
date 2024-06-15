@@ -1,0 +1,44 @@
+{
+  "React functional component": {
+    "prefix": "ttf",
+    "body": [
+      "import React from 'react';",
+      "",
+      "interface Props {}",
+      "",
+      "export type { Props as ${1:${TM_FILENAME_BASE}}Props }",
+      "",
+      "export function ${1}(props: Props) {",
+      "  return ${2:null};",
+      "};",
+      ""
+    ],
+    "description": "create a functional component"
+  },
+  "React ref forwarded functional component": {
+    "prefix": "sf",
+    "body": [
+      "import React from 'react';",
+      "",
+      "type Ref = React.ComponentRef<'${2:div}'> | null;",
+      "",
+      "type Props = React.ComponentPropsWithoutRef<'${2}'>;",
+      "",
+      "export type { Ref as ${1}Ref, Props as ${1}Props };",
+      "",
+      "export const ${1:${TM_FILENAME_BASE}} = React.forwardRef<Ref, Props>(",
+      "  ({ children, className, ...props }, forwardedRef) => {",
+      "    return (",
+      "      <${2} ref={forwardedRef} className={${4:className}} {...props}>",
+      "        {children}",
+      "      </${2}>",
+      "    );",
+      "  }",
+      ");",
+      "",
+      "${1}.displayName = '${1}';",
+      ""
+    ],
+    "description": "create a ref forwarded component"
+  }
+}
