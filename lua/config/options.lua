@@ -4,3 +4,6 @@
 local opt = vim.opt
 
 opt.conceallevel = 0
+
+-- Disable format-on-save (LazyVim enables it by default)
+vim.g.autoformat = false

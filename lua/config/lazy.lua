@@ -23,7 +23,10 @@ require("lazy").setup({
     { import = "plugins" },
     {
       "neovim/nvim-lspconfig",
-      opts = { autoformat = false }, -- add this line
+      opts = {
+        autoformat = false, -- add this line
+        inlay_hints = { enabled = false }, -- disable LSP inlay hints
+      },
     },
   },
   defaults = {
