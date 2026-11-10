@@ -1,0 +1,170 @@
+{
+  "Print to console": {
+    "prefix": "log",
+    "body": [
+      "console.log('$1');",
+      "$2"
+    ],
+    "description": "Log output to console"
+  },
+  "Export Pdf Workflow Components": {
+    "prefix": "epwc",
+    "body": [
+      "export { Container as ${1}Container } from './Container';",
+      "export type { ContainerProps as ${1}ContainerProps } from './Container';",
+      "export { Preview as ${1}Preview } from './Preview';",
+      "export type { PreviewProps as ${1}PreviewProps } from './Preview';",
+      "export type {",
+      "  ConfigurableProps as ${1}ConfigurableProps,",
+      "  InstanceType as ${1}InstanceType,",
+      "  InstanceValues as ${1}InstanceValues,",
+      "} from './typings';",
+      "export { View as ${1}View } from './View';",
+      "export type { ViewProps as ${1}ViewProps } from './View';",
+      ""
+    ],
+    "description": "导出PDF工作流组件"
+  },
+  "Create Outline Editor Plugin": {
+    "prefix": "ep",
+    "body": [
+      "import { DefaultEditor } from '@/components/RichTextEditor';",
+      "",
+      "export type EditorWith${1} = {};",
+      "",
+      "export const ${1}Editor = {};",
+      "",
+      "export function with${1}<E extends DefaultEditor>(editor: E): E & EditorWith${1} {",
+      "  return editor;",
+      "}"
+    ],
+    "description": "创建大纲编辑器plugin"
+  },
+  "useQuery Hook": {
+    "prefix": "useq",
+    "body": [
+      "import { queryOptions, useQuery } from \"@tanstack/react-query\";",
+      "",
+      "export type ${TM_FILENAME_BASE/use(.+)Query/${1}/}QueryParams = {${1}};",
+      "",
+      "export const ${TM_FILENAME_BASE/use(.+)Query/${1:/camelcase}/}QueryKey = (params?: ${TM_FILENAME_BASE/use(.+)Query/${1}/}QueryParams) => [\"__query__\", \"${TM_FILENAME_BASE/use(.+)Query/${1:/camelcase}/}\", params];",
+      "",
+      "export const ${TM_FILENAME_BASE/use(.+)Query/${1:/camelcase}/}QueryOptions = (params?: ${TM_FILENAME_BASE/use(.+)Query/${1}/}QueryParams) =>",
+      "  queryOptions({",
+      "    queryKey: ${TM_FILENAME_BASE/use(.+)Query/${1:/camelcase}/}QueryKey(params),",
+      "    queryFn: async () => {",
+      "      return ${2:[]};",
+      "    },",
+      "  });",
+      "",
+      "type ${TM_FILENAME_BASE/use(.+)Query/${1}/}QueryOptions = Partial<ReturnType<typeof ${TM_FILENAME_BASE/use(.+)Query/${1:/camelcase}/}QueryOptions>>;",
+      "",
+      "export function ${TM_FILENAME_BASE}(params?: ${TM_FILENAME_BASE/use(.+)Query/${1}/}QueryParams, options?: ${TM_FILENAME_BASE/use(.+)Query/${1}/}QueryOptions) {",
+      "  return useQuery({ ...${TM_FILENAME_BASE/use(.+)Query/${1:/camelcase}/}QueryOptions(params), ...options });",
+      "}",
+      ""
+    ],
+    "description": "useQuery hook"
+  },
+  "useInfiniteQuery Hook": {
+    "prefix": "useiq",
+    "body": [
+      "import { useInfiniteQuery } from \"@tanstack/react-query\";",
+      "",
+      "export type ${TM_FILENAME_BASE/use(.+)Query/${1}/}QueryParams = {${1}};",
+      "",
+      "export const ${TM_FILENAME_BASE/use(.+)Query/${1:/camelcase}/}QueryKey = (params: ${TM_FILENAME_BASE/use(.+)Query/${1}/}QueryParams) => [\"__infinite_query__\", \"${TM_FILENAME_BASE/use(.+)Query/${1:/camelcase}/}\", params];",
+      "",
+      "export function ${TM_FILENAME_BASE}(params: ${TM_FILENAME_BASE/use(.+)Query/${1}/}QueryParams) {",
+      "  return useInfiniteQuery({",
+      "    initialPageParam: {",
+      "      page: 1,",
+      "      size: 10,",
+      "      hasNext: true",
+      "    },",
+      "    staleTime: 0,",
+      "    queryKey: ${TM_FILENAME_BASE/use(.+)Query/${1:/camelcase}/}QueryKey(params),",
+      "    queryFn: async ctx => {",
+      "      const { data, total } = await ${2:Promise.resolve({ data: [], total: 0 }});",
+      "      const hasNext = ctx.pageParam.page * ctx.pageParam.size < total;",
+      "      return {",
+      "        hasNext,",
+      "        page: ctx.pageParam.page,",
+      "        size: ctx.pageParam.size,",
+      "        data",
+      "      };",
+      "    },",
+      "    getNextPageParam: lastPage =>",
+      "      lastPage.hasNext ? { ...lastPage, page: lastPage.page + 1 } : undefined",
+      "  });",
+      "}"
+    ],
+    "description": "useInfiniteQuery hook"
+  },
+  "useMutation Hook": {
+    "prefix": "usem",
+    "body": [
+      "import { useMutation } from \"@tanstack/react-query\";",
+      "",
+      "export const ${TM_FILENAME_BASE/use(.+)Mutation/${1:/camelcase}/}MutationKey = () => [\"__mutation__\", \"${TM_FILENAME_BASE/use(.+)Mutation/${1:/camelcase}/}\"];",
+      "",
+      "export function ${TM_FILENAME_BASE}() {",
+      "  return useMutation({",
+      "    mutationKey: ${TM_FILENAME_BASE/use(.+)Mutation/${1:/camelcase}/}MutationKey(),",
+      "    mutationFn: async (variables: { ${1} }) => {",
+      "      return ${2:new Promise(resolve => {setTimeout(resolve, 500)}});",
+      "    },",
+      "  });",
+      "}"
+    ],
+    "description": "useMutation hook"
+  },
+  "Api Request": {
+    "prefix": "ar",
+    "body": [
+      "${3}",
+      "export function ${TM_CURRENT_LINE/([^\\.]+)\\.ar/${1}/}(data: ${TM_CURRENT_LINE/([^\\.]+)\\.ar/${1:/capitalize}/}Params) {",
+      "  return request<${TM_CURRENT_LINE/([^\\.]+)\\.ar/${1:/capitalize}/}Params, ${TM_CURRENT_LINE/([^\\.]+)\\.ar/${1:/capitalize}/}Response>('${1}', {",
+      "    method: '${2|POST,GET|}',",
+      "    data",
+      "  });",
+      "};",
+      ""
+    ],
+    "description": "Api Request"
+  },
+  "Api Types": {
+    "prefix": "at",
+    "body": [
+      "${4}",
+      "export interface ${TM_CURRENT_LINE/([^\\.]+)\\.at/${1:/capitalize}/}Params {",
+      "  ${2}",
+      "}",
+      "  ",
+      "export interface ${TM_CURRENT_LINE/([^\\.]+)\\.at/${1:/capitalize}/}Response {",
+      "  ${3}",
+      "};",
+      ""
+    ],
+    "description": "Api Types"
+  },
+  "vitest": {
+    "prefix": "vt",
+    "body": [
+      "import { describe, expect, it } from 'vitest';",
+      "",
+      "describe('${TM_FILENAME_BASE}', () => {",
+      "  it('should work', () => {",
+      "    expect(true).toBe(true);",
+      "  });",
+      "});"
+    ],
+    "description": "vitest unit test"
+  },
+  "cypress get by data-testid": {
+    "prefix": "cyget",
+    "body": [
+      "cy.get('[data-testid=${1}]').${2|click,type,clear,should|}();"
+    ]
+  }
+}

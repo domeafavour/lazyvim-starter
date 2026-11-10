@@ -1,0 +1,17 @@
+{
+  "Create Categories Post": {
+    "prefix": "cp",
+    "body": [
+      "---",
+      "layout: categories-post",
+      "title:  $1",
+      "categories: ${2:chat}",
+      "read_time: true",
+      "featured-img: /assets/img/posts/$3",
+      "---",
+      "",
+      "$4"
+    ],
+    "description": "创建分类post"
+  }
+}

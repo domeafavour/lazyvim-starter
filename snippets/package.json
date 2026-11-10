@@ -1,0 +1,39 @@
+{
+  "name": "snippets",
+  "contributes": {
+    "snippets": [
+      {
+        "language": ["typescriptreact"],
+        "path": "./typescriptreact.json"
+      },
+      {
+        "language": ["javascriptreact"],
+        "path": "./javascriptreact.json"
+      },
+      {
+        "language": ["typescript"],
+        "path": "./typescript.json"
+      },
+      {
+        "language": ["markdown"],
+        "path": "./markdown.json"
+      },
+      {
+        "language": [
+          "javascript",
+          "javascriptreact",
+          "typescript",
+          "typescriptreact",
+          "vue",
+          "svelte",
+          "astro",
+          "css",
+          "scss",
+          "less",
+          "html"
+        ],
+        "path": "./fileheader.json"
+      }
+    ]
+  }
+}

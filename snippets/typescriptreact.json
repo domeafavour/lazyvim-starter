@@ -1,0 +1,239 @@
+{
+  "Print to console": {
+    "prefix": "log",
+    "body": [
+      "console.log('$1');",
+      "$2"
+    ],
+    "description": "Log output to console"
+  },
+  "Export Pdf Workflow Components": {
+    "prefix": "epwc",
+    "body": [
+      "export { Container as ${1}Container } from './Container';",
+      "export type { ContainerProps as ${1}ContainerProps } from './Container';",
+      "export { Preview as ${1}Preview } from './Preview';",
+      "export type { PreviewProps as ${1}PreviewProps } from './Preview';",
+      "export type {",
+      "  ConfigurableProps as ${1}ConfigurableProps,",
+      "  InstanceType as ${1}InstanceType,",
+      "  InstanceValues as ${1}InstanceValues,",
+      "} from './typings';",
+      "export { View as ${1}View } from './View';",
+      "export type { ViewProps as ${1}ViewProps } from './View';",
+      ""
+    ],
+    "description": "导出PDF工作流组件"
+  },
+  "Type React Functional Component": {
+    "prefix": "trfc",
+    "body": [
+      "import React from 'react';",
+      "",
+      "interface Props {}",
+      "",
+      "export type ${1:${TM_FILENAME_BASE}}Props = Props;",
+      "",
+      "export const ${1}: React.VFC<Props> = () => {",
+      "  return ${2:null};",
+      "}",
+      ""
+    ],
+    "description": "创建有类型的函数组件"
+  },
+  "Type React Functional Component 2": {
+    "prefix": "ttf",
+    "body": [
+      "import React from 'react';",
+      "",
+      "export interface ${1:${TM_FILENAME_BASE}}Props {",
+      "  ${2:className?: string;}",
+      "}",
+      "",
+      "",
+      "export function ${1}({ ${3:className} }: ${1:${TM_FILENAME_BASE}}Props) {",
+      "  return ${4:null};",
+      "}",
+      ""
+    ],
+    "description": "创建有类型的函数组件"
+  },
+  "Forwarded Ref Component": {
+    "prefix": "sf",
+    "body": [
+      "import { cn } from '@/utils/cn';",
+      "import type { ComponentPropsWithoutRef, ComponentRef } from 'react';",
+      "import { forwardRef } from 'react';",
+      "",
+      "export const ${1:${TM_FILENAME_BASE}} = forwardRef<ComponentRef<'${2:div}'>, ComponentPropsWithoutRef<'${2}'>>(",
+      "  ({ className, ...props }, forwardedRef) => {",
+      "    return (",
+      "      <${2} ref={forwardedRef} className={cn(${3:\"\"}, className)} {...props} />",
+      "    );",
+      "  },",
+      ");",
+      "",
+      "${1}.displayName = '${1}';",
+      ""
+    ],
+    "description": "create a ref forwarded component"
+  },
+  "Primitive Component": {
+    "prefix": "pc",
+    "body": [
+      "import { cn } from '@/lib/utils';",
+      "import type { ComponentProps } from 'react';",
+      "",
+      "export function ${1:${TM_FILENAME_BASE}}({ className, ...props }: ComponentProps<'${2:div}'>) {",
+      "  return (",
+      "    <${2:div} className={cn(\"${3}\", className)} {...props} />",
+      "  );",
+      "};",
+      "",
+      ""
+    ],
+    "description": "create an atomic component"
+  },
+  "Forwarded Ref Component(style)": {
+    "prefix": "sfs",
+    "body": [
+      "import React from 'react';",
+      "",
+      "type Ref = React.ComponentRef<'${2:div}'> | null;",
+      "",
+      "type Props = React.ComponentPropsWithoutRef<'${2}'>;",
+      "",
+      "export type ${1}Ref = Ref;",
+      "export type ${1}Props = Props;",
+      "",
+      "export const ${1:${TM_FILENAME_BASE}} = React.forwardRef<Ref, Props>(",
+      "  ({ style, ...props }, forwardedRef) => {",
+      "    return (",
+      "      <${2} ref={forwardedRef} style={{ ${3}, ...style }} {...props} />",
+      "    );",
+      "  }",
+      ");",
+      "",
+      "${1}.displayName = '${1}';",
+      ""
+    ],
+    "description": "create a ref forwarded component"
+  },
+  "Workflow Page": {
+    "prefix": "wfp",
+    "body": [
+      "import React from 'react';",
+      "import { WorkflowTaskComponentProps } from '../typings';",
+      "",
+      "interface ConfigurableProps {",
+      "  command: string;",
+      "}",
+      "",
+      "interface Props extends WorkflowTaskComponentProps, ConfigurableProps {",
+      "  data: { task_id: string; node_key: string };",
+      "}",
+      "",
+      "export type { Props as ${1:${TM_FILENAME_BASE}}Props };",
+      "",
+      "export const ${1}: React.VFC<Props> = () => {",
+      "  return ${2:null};",
+      "};",
+      ""
+    ],
+    "description": "创建工作流页面"
+  },
+  "useQuery Hook": {
+    "prefix": "useq",
+    "body": [
+      "import { useQuery } from \"@tanstack/react-query\";",
+      "",
+      "export const ${TM_FILENAME_BASE/use([A-Z])(\\w+)Query/${1:/downcase}${2}/}QueryKey = (${1}) => [\"__query__\", \"${TM_FILENAME_BASE/use([A-Z])(\\w+)Query/${1:/downcase}${2}/}\", ${1/([^:]+)\\:.+/${1}/}];",
+      "",
+      "export function ${TM_FILENAME_BASE}(${1}) {",
+      "  return useQuery({",
+      "    queryKey: ${TM_FILENAME_BASE/use([A-Z])(\\w+)Query/${1:/downcase}${2}/}QueryKey(${1/([^:]+)\\:.+/${1}/}),",
+      "    queryFn: async () => {",
+      "      return ${2:[]};",
+      "    },",
+      "  });",
+      "}"
+    ],
+    "description": "useQuery hook"
+  },
+  "useMutation Hook": {
+    "prefix": "usem",
+    "body": [
+      "import { useMutation } from \"@tanstack/react-query\";",
+      "",
+      "export const ${TM_FILENAME_BASE/use([A-Z])(\\w+)Mutation/${1:/downcase}${2}/}MutationKey = () => [\"__mutation__\", \"${TM_FILENAME_BASE/use([A-Z])(\\w+)Mutation/${1:/downcase}${2}/}\"];",
+      "",
+      "export function ${TM_FILENAME_BASE}() {",
+      "  return useMutation({",
+      "    mutationKey: ${TM_FILENAME_BASE/use([A-Z])(\\w+)Mutation/${1:/downcase}${2}/}MutationKey(),",
+      "    mutationFn: async (${2}) => {",
+      "      return ${1:new Promise(resolve => setTimeout(resolve, 500))};",
+      "    },",
+      "  });",
+      "}"
+    ],
+    "description": "useMutation hook"
+  },
+  "vitest react": {
+    "prefix": "vr",
+    "body": [
+      "import React from 'react';",
+      "import { render } from '@testing-library/react';",
+      "import { describe, expect, it } from 'vitest';",
+      "",
+      "describe('${TM_FILENAME_BASE}', () => {",
+      "  it('should render correctly', () => {",
+      "    // const { container } = render();",
+      "    // expect(container).toMatchSnapshot();",
+      "  });",
+      "});"
+    ],
+    "description": "vitest react"
+  },
+  "atomic component": {
+    "prefix": "ac",
+    "body": [
+      "const ${1} = React.forwardRef<React.ComponentRef<\"${2:div}\">, React.ComponentPropsWithoutRef<\"${2}\">>(({ className, ...props }, forwardedRef) => {",
+      "  return <${2} className={cn(\"${3}\", className)} ref={forwardedRef} {...props} />;",
+      "});",
+      "${1}.displayName = \"${TM_FILENAME_BASE}.${1}\""
+    ],
+    "description": "create atomic component"
+  },
+  "data-testid": {
+    "prefix": "dti",
+    "body": [
+      "data-testid=\"${1}\""
+    ]
+  },
+  "cypress get by data-testid": {
+    "prefix": "cyget",
+    "body": [
+      "cy.get('[data-testid=${1}]').${2|click,type,clear,should|}();"
+    ]
+  },
+  "storybook react": {
+    "prefix": "sr",
+    "body": [
+      "import type { Meta, StoryObj } from \"@storybook/react\";",
+      "",
+      "const meta: Meta = {",
+      "  title: \"${1}\",",
+      "  argTypes: {},",
+      "  tags: [\"autodocs\"],",
+      "};",
+      "",
+      "export default meta;",
+      "",
+      "type Story = StoryObj;",
+      "",
+      "export const Default: Story = {",
+      "  render: () => <div>story</div>",
+      "}"
+    ]
+  }
+}

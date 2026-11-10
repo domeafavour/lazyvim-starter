@@ -1,0 +1,27 @@
+{
+  "Print to console": {
+    "prefix": "log",
+    "body": [
+      "console.log('$1');",
+      "$2"
+    ],
+    "description": "Log output to console"
+  },
+  "Create Test Page": {
+    "prefix": "tp",
+    "body": [
+      "import React from 'react';",
+      "",
+      "const Demo = () => {",
+      "  return ${1:null};",
+      "};",
+      "",
+      "const Page = () => {",
+      "  return <Demo />;",
+      "};",
+      "",
+      "export default Page;"
+    ],
+    "description": "test with some demos"
+  }
+}
